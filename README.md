@@ -1,2 +1,2 @@
 # quiz-app
-Q simple quiz app built with Vue.js
+A simple quiz app built with Vue.js
