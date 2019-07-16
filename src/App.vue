@@ -1,14 +1,11 @@
 <template>
   <div id="app">
-    <Header 
-      :numCorrect="numCorrect"
-      :numTotal="numTotal"
-    />
+    <Header :numCorrect="numCorrect" :numTotal="numTotal" />
 
     <b-container class="bv-example-row">
       <b-row>
         <b-col sm="6" offset="3">
-          <QuestionBox 
+          <QuestionBox
             v-if="questions.length"
             :currentQuestion="questions[index]"
             :next="next"
@@ -16,16 +13,16 @@
           />
         </b-col>
       </b-row>
-</b-container>
+    </b-container>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import QuestionBox from './components/QuestionBox.vue'
+import Header from "./components/Header.vue";
+import QuestionBox from "./components/QuestionBox.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
     Header,
     QuestionBox
@@ -36,38 +33,38 @@ export default {
       index: 0,
       numCorrect: 0,
       numTotal: 0
-    }
+    };
   },
   methods: {
     next() {
-      this.index++
+      this.index++;
     },
     increment(isCorrect) {
       if (isCorrect) {
-        this.numCorrect++
+        this.numCorrect++;
       }
-      this.numTotal++
+      this.numTotal++;
     }
   },
   mounted: function() {
-    fetch('https://opentdb.com/api.php?amount=10&category=27&type=multiple', {
-      method: 'get'
+    fetch("https://opentdb.com/api.php?amount=10&category=27&type=multiple", {
+      method: "get"
     })
-      .then((response) => {
-        return response.json()
+      .then(response => {
+        return response.json();
       })
-      .then((jsonData) => {
-        this.questions = jsonData.results
-      })
+      .then(jsonData => {
+        this.questions = jsonData.results;
+      });
   }
-}
+};
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&display=swap");
 
 #app {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
